@@ -18,12 +18,31 @@ using System.Threading.Tasks;
  * just spaces,newlines and words from alphabetic characters.
  * First I didn't assume that but then after re-reading the task this is how I interpret it.
  */
+
+/* TODO list
+ * [DONE] set repo, gitignore all but source
+ * [DONE] Copy specs into the source
+ * [DONE] Create a file
+ * [DONE] Read (safely)
+ * Sort
+ * Write(safely)
+ */
+
 namespace Agito1
 {
     class Program
     {
         static void Main(string[] args)
         {
+            string fname = @"D:\Agito\Test\1\ordinary.txt";
+            try
+            {
+                string text = System.IO.File.ReadAllText(fname);
+            }
+            catch
+            {
+                Console.WriteLine("Something went wrong with file io");
+            }
         }
     }
 }
