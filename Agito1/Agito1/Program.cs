@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 /* Task 1:
  * 1.Create a Console Application project.
  * 2.Please make your own ordinary text file. 
@@ -40,10 +41,10 @@ namespace Agito1
             string fname = @"D:\Agito\Test\1\ordinary.txt";
             //Read
             string[] words;
-            char[] sep = new char[] {' ','\r' ,'\n' };
+            char[] sep = new char[] {' ','\r' ,'\n' ,'\t'};
             try
             {
-                words = System.IO.File.ReadAllText(fname).Split(sep); //consumes memory at least four times the size of file (provided file is 1 byte per character);
+                words = File.ReadAllText(fname).Split(sep); //consumes memory at least four times the size of file (provided file is 1 byte per character);
                                                                     // But we're not writing C here, so let's assume we have the resources
             }
             catch
@@ -54,7 +55,22 @@ namespace Agito1
             //Sort
             System.Array.Sort(words);
             //Write
-            System.IO.File.WriteAllText //(@"D:\Agito\Test\1\out.txt", words);
+            using (StreamWriter writer =
+                new StreamWriter(@"D:\Agito\Test\1\out.txt"))
+            {
+               
+               
+                for (int ind = 0; ind < words.Length ;ind++ )
+                {
+                    if (!(words[ind].Trim(sep).Equals("",StringComparison.Ordinal)))
+                    {
+                    writer.Write(words[ind].Trim(sep)+" ");
+                    }
+                }
+               
+            }
+           
+
 
 
             
