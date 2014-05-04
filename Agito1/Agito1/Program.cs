@@ -26,6 +26,9 @@ using System.Threading.Tasks;
  * [DONE] Read (safely)
  * Sort
  * Write(safely)
+ * --Featuritis begin--
+ * Argparse
+ * StringBuilder
  */
 
 namespace Agito1
@@ -35,14 +38,26 @@ namespace Agito1
         static void Main(string[] args)
         {
             string fname = @"D:\Agito\Test\1\ordinary.txt";
+            //Read
+            string[] words;
+            char[] sep = new char[] {' ','\r' ,'\n' };
             try
             {
-                string text = System.IO.File.ReadAllText(fname);
+                words = System.IO.File.ReadAllText(fname).Split(sep); //consumes memory at least four times the size of file (provided file is 1 byte per character);
+                                                                    // But we're not writing C here, so let's assume we have the resources
             }
             catch
             {
                 Console.WriteLine("Something went wrong with file io");
+                return;
             }
+            //Sort
+            System.Array.Sort(words);
+            //Write
+            System.IO.File.WriteAllText //(@"D:\Agito\Test\1\out.txt", words);
+
+
+            
         }
     }
 }
